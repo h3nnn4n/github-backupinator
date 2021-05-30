@@ -32,7 +32,7 @@ def _get_user_repositories_page(user_name, page_link=None):
     auth = get_auth()
 
     result = requests.get(
-        page_link or f"https://api.github.com/users/{user_name}/repos?per_page=100",
+        page_link or f"https://api.github.com/search/repositories?q=user:{user_name}",
         auth=auth,
     )
 
@@ -50,7 +50,7 @@ def list_repositories(user_name):
     while True:
         data, links = _get_user_repositories_page(user_name, page_link=next_page_link)
 
-        for repository in data:
+        for repository in data.get("items"):
             yield repository
 
         next_page_link = links.get("next")
