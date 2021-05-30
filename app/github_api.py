@@ -19,6 +19,7 @@ def get_auth():
     if all(auth):
         return auth
 
+    print("WARN: auth not set")
     return None
 
 
