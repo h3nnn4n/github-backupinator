@@ -1,4 +1,5 @@
 import requests
+from functools import lru_cache
 import links_from_header
 import os
 from dotenv import load_dotenv
@@ -7,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+@lru_cache(maxsize=None)
 def get_auth():
     """
     Reads the setting file and sets the github api credentials. If not found,
