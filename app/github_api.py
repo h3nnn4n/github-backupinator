@@ -29,7 +29,7 @@ def _get_user_repositories_page(user_name, page_link=None):
     auth = get_auth()
 
     result = requests.get(
-        page_link or f"https://api.github.com/users/{user_name}/repos",
+        page_link or f"https://api.github.com/users/{user_name}/repos?per_page=100",
         auth=auth,
     )
 
